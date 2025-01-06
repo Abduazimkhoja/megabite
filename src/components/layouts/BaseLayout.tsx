@@ -10,9 +10,9 @@ const BaseLayout: FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <main className="flex">
+      <main className="flex flex-1">
         <Sidebar />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 p-8">{children}</div>
       </main>
     </>
   );

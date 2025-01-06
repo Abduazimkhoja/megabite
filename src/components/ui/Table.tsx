@@ -51,11 +51,14 @@ const Table = <T,>({
     }
 
     return dataSource?.map((record, rowIndex) => (
-      <tr key={rowKey === 'index' ? rowIndex : (record?.[rowKey] as string)}>
+      <tr
+        className="border-b"
+        key={rowKey === 'index' ? rowIndex : (record?.[rowKey] as string)}
+      >
         {columns?.map((col) => (
           <td
             key={col?.key}
-            className={`text-nowrap truncate min-w-5 max-w-100 text-${
+            className={`p-3 text-nowrap truncate min-w-5 max-w-100 text-${
               col?.align || 'left'
             } ${col?.className}`}
             {...col?.tdProps?.(
@@ -76,13 +79,16 @@ const Table = <T,>({
   return (
     <div className={`bg-white rounded-xl ${wrapClassName}`}>
       <table
-        className={`table overflow-y-scroll relative ${className}`}
+        className={`table w-full overflow-y-scroll relative ${className}`}
         {...rest}
       >
         <thead className="sticky top-0 z-1">
-          <tr className="bg-[#FAFAFA]">
+          <tr className="bg-gray-200">
             {columns?.map(({ key, title, align, className = '' }) => (
-              <th className={`text-${align || 'left'} ${className}`} key={key}>
+              <th
+                className={`p-3  text-${align || 'left'} ${className}`}
+                key={key}
+              >
                 {title}
               </th>
             ))}

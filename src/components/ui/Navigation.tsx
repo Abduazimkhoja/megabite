@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { FC, JSX } from 'react';
+import NavLink from './NavLink';
 
 const navigateItems = [
   { label: 'Главное', link: '/' },
@@ -18,7 +18,7 @@ const Navigation: FC<Props> = ({ className = '', ...rest }) => {
         {navigateItems?.map(({ label, link }) => {
           return (
             <li key={link}>
-              <Link href={link}>{label}</Link>
+              <NavLink href={link}>{label}</NavLink>
             </li>
           );
         })}

@@ -19,7 +19,7 @@ const Button: FC<Props> = ({
   return (
     <button
       disabled={disabled || loading}
-      className={`btn ${className}`}
+      className={`py-1 px-4 rounded bg-gray-200 ${className}`}
       {...rest}
     >
       {loading ? <span className="loading loading-spinner"></span> : beforeEl}

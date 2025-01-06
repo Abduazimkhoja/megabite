@@ -1,11 +1,10 @@
-import DeleteIcon from '@/assets/icons/delete.svg';
 import { FC, useEffect, useRef } from 'react';
-import TableActionBtn from './table/TableActionBtn';
+import Button from './Button';
 
 type DeleteModalProps = {
-  onConfirm: (id: string) => void;
+  onConfirm: (id: string | number) => void;
   onCancel?: () => void;
-  delteItemId: string | null;
+  delteItemId: string | null | number;
   viewButton?: boolean;
 };
 
@@ -36,9 +35,7 @@ const DeleteModal: FC<DeleteModalProps> = ({
 
   return (
     <div>
-      {viewButton && (
-        <TableActionBtn visualType="delete" onClick={handleOpen} />
-      )}
+      {viewButton && <Button onClick={handleOpen}>х</Button>}
       <dialog ref={modalRef} className="modal">
         <div className="modal-box rounded-lg p-6 flex flex-col items-center text-center">
           <button
@@ -47,23 +44,23 @@ const DeleteModal: FC<DeleteModalProps> = ({
           >
             ✕
           </button>
-          <DeleteIcon className="size-16 text-slate-300 mb-4" />
+          <span className="text-xl text-slate-300 mb-4">Удалить</span>
           <h3 className="font-bold text-lg mb-2">
             Вы уверены, что хотите удалить этот элемент?
           </h3>
           <div className="flex gap-4 mt-4">
-            <button className="btn btn-outline" onClick={handleClose}>
+            <Button className="btn btn-outline" onClick={handleClose}>
               Нет, отмените
-            </button>
-            <button
-              className="btn btn-error text-white"
+            </Button>
+            <Button
+              className="btn btn-error bg-red-400 text-white"
               onClick={() => {
                 onConfirm(delteItemId);
                 handleClose();
               }}
             >
               Да, я уверен
-            </button>
+            </Button>
           </div>
         </div>
         <form
