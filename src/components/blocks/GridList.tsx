@@ -4,7 +4,10 @@ type Props = {} & JSX.IntrinsicElements['ul'];
 
 const GridList: FC<Props> = ({ children, className = '', ...rest }) => {
   return (
-    <ul className={`grid grid-cols-4 gap-5 ${className}`} {...rest}>
+    <ul
+      className={`grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5 ${className}`}
+      {...rest}
+    >
       {children}
     </ul>
   );

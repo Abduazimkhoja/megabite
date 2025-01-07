@@ -1,4 +1,4 @@
-import { TResponseItem } from '@/app/(container)/cart/PageContent';
+import { TResponseItem } from '@/app/(container)/(app)/PageContent';
 import Image from 'next/image';
 import { FC, JSX } from 'react';
 
@@ -19,16 +19,18 @@ const ProductCard: FC<Props> = ({
     >
       <div className="w-full h-[50%] border-b overflow-hidden">
         <Image
-          src={'https://picsum.photos/300/200'}
+          src={product?.image || ''}
           width={300}
           height={150}
-          alt={product.name}
+          alt={product?.name || ''}
           className="w-full h-full object-cover"
         />
       </div>
       <div className="p-3 flex-1 flex flex-col gap-2">
-        <h3 className="text-sm font-semibold">{product.name}</h3>
-        <p className="text-xs text-gray-600">{product.name}</p>
+        <h3 className="text-sm font-semibold line-clamp-2">{product?.name}</h3>
+        <p className="text-xs text-gray-600 line-clamp-2">
+          {product?.description}
+        </p>
       </div>
       <button className="p-2 text-center w-full border-t">В корзину</button>
     </li>

@@ -2,8 +2,10 @@
 import Button from '@/components/ui/Button';
 import DeleteModal from '@/components/ui/DeleteModal';
 import Table, { TableColumn } from '@/components/ui/Table';
+import { useDeleteProductsMutation } from '@/store/services/products/api';
 import { FC, useState } from 'react';
 import { TColumnType, TResponse } from './PageContent';
+import PageForm from './PageForm';
 
 type Props = {
   response: TResponse;
@@ -14,6 +16,12 @@ const PageTable: FC<Props> = ({ response, loading }) => {
   const [deleteItemId, setDeleteItemId] = useState<string | number | null>(
     null,
   );
+
+  const [deleteProductsTrigger] = useDeleteProductsMutation();
+
+  const handleDelete = async (id: string | number) => {
+    deleteProductsTrigger({ id: String(id) });
+  };
 
   const columns: TableColumn<TColumnType>[] = [
     {
@@ -32,11 +40,11 @@ const PageTable: FC<Props> = ({ response, loading }) => {
       title: 'Действия',
       key: 'action',
       dataIndex: 'action',
-      render(_, { id }) {
+      render(_, dataItem) {
         return (
           <div className="flex gap-4 justify-center">
-            <Button onClick={() => {}}>+</Button>
-            <Button onClick={() => setDeleteItemId(id)}>x</Button>
+            <PageForm dataItem={dataItem} />
+            <Button onClick={() => setDeleteItemId(dataItem?.id)}>x</Button>
           </div>
         );
       },
@@ -52,6 +60,7 @@ const PageTable: FC<Props> = ({ response, loading }) => {
         }}
         onConfirm={(id) => {
           // deleteEmployeeTrigger({ id, token });
+          handleDelete(id);
           setDeleteItemId(null);
         }}
       />
