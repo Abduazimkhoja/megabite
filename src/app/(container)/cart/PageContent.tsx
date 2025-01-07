@@ -2,7 +2,7 @@
 import GridList from '@/components/blocks/GridList';
 import ProductCard from '@/components/blocks/ProductCard';
 import ContentHeader from '@/components/layouts/ContentHeader';
-import { useGetAllProductsQuery } from '@/store/services/products/api';
+import { useAppSelector } from '@/store/reduxHooks';
 import {
   TGetAllProductsResponse,
   TProductsItem,
@@ -18,13 +18,13 @@ export type TColumnType = TProductsItem;
 type Props = {};
 
 const Content: FC<Props> = () => {
-  const getAll = useGetAllProductsQuery();
+  const cartItems = useAppSelector((state) => state?.cart?.items);
 
   return (
     <>
       <ContentHeader className="mb-5" pageName={PAGE_NAME}></ContentHeader>
       <GridList>
-        {getAll?.data?.map((product) => (
+        {cartItems?.map((product) => (
           <ProductCard key={product?.id} product={product} />
         ))}
       </GridList>

@@ -1,6 +1,9 @@
 import { TResponseItem } from '@/app/(container)/(app)/PageContent';
+import { useAppDispatch, useAppSelector } from '@/store/reduxHooks';
+import { changeCartQuantity, setCart } from '@/store/slices/cart.slice';
 import Image from 'next/image';
 import { FC, JSX } from 'react';
+import Button from '../ui/Button';
 
 type Props = {
   product: TResponseItem;
@@ -12,6 +15,13 @@ const ProductCard: FC<Props> = ({
   className = '',
   ...rest
 }) => {
+  const dispatch = useAppDispatch();
+  const itemExist = useAppSelector((state) =>
+    state?.cart?.items?.find(({ id }) => id === product?.id),
+  );
+
+  if (!product) return;
+
   return (
     <li
       className={`flex flex-col overflow-hidden border rounded-xl h-72 ${className}`}
@@ -32,7 +42,32 @@ const ProductCard: FC<Props> = ({
           {product?.description}
         </p>
       </div>
-      <button className="p-2 text-center w-full border-t">В корзину</button>
+      {!itemExist ? (
+        <button
+          onClick={() => dispatch(setCart(product))}
+          className="p-2 text-center w-full border-t"
+        >
+          В корзину
+        </button>
+      ) : (
+        <div className="p-2 text-center w-full border-t flex gap-4 justify-center items-center">
+          <Button
+            onClick={() =>
+              dispatch(changeCartQuantity({ id: product?.id, type: 'minus' }))
+            }
+          >
+            -
+          </Button>
+          {itemExist?.quantity}
+          <Button
+            onClick={() =>
+              dispatch(changeCartQuantity({ id: product?.id, type: 'plus' }))
+            }
+          >
+            +
+          </Button>
+        </div>
+      )}
     </li>
   );
 };

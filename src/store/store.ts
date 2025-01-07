@@ -1,5 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistStore,
+} from 'redux-persist';
 import { rootReducer } from './reducers';
 import { apiMiddlewareList } from './services/service.reducers';
 

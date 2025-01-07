@@ -7,7 +7,7 @@ import storage from './storage';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['lang', 'sidebar', 'theme', 'auth'],
+  whitelist: ['lang', 'sidebar', 'theme', 'auth', 'cart'],
 };
 
 const reducers = combineReducers({
