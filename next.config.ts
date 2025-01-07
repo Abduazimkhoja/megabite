@@ -8,9 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname:
-          process?.env?.NEXT_PUBLIC_API_DOMEN ||
-          '6676772a145714a1bd71d6d4.mockapi.io',
+        hostname: process?.env?.NEXT_PUBLIC_API_DOMEN || '',
         pathname: '**',
       },
       {
