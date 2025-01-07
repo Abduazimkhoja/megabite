@@ -9,8 +9,8 @@ import {
 } from '@/store/services/products/type';
 import { FC } from 'react';
 
-export const PAGE_PATH = '/home';
-export const PAGE_NAME = 'home';
+export const PAGE_PATH = '/cart';
+export const PAGE_NAME = 'cart';
 export type TResponse = TGetAllProductsResponse | undefined;
 export type TResponseItem = TProductsItem | undefined;
 export type TColumnType = TProductsItem;
