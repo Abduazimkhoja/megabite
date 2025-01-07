@@ -1,7 +1,7 @@
-export * from './auth/auth.api';
-export * from './auth/auth.type';
-export * from './users/users.api';
-export * from './users/users.type';
+export * from './categories/api';
+export * from './products/api';
+export * from './categories/type';
+export * from './products/type';
 
 // Example:
 export * from './example/api';

@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, JSX } from 'react';
 
 type Props = {
   label: string;
